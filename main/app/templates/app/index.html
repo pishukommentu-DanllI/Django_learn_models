@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pages</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="BlockHref">
+        <a href="{% url 'form' %}">Add page</a>
+    </div>
+    {% for i in pages %}
+        <div class="contaner">
+            <div class="contaner__text">
+                <p class="author">{{i.title}}</p>
+                <p class="text_content Text">{{i.content}}</p>
+            </div>
+            <block class="BlockImg">
+                {% if 'https:' in i.img_href %}
+                    <img src="{{i.img_href}}" class="BlockImg">
+
+                {% else %}
+                    <img src="/static/img/{{i.img_href}}" class="BlockImg">
+                {% endif %}
+            </block>
+        </div>
+    {% endfor %}
+</body>
+</html>
